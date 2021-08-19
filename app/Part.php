@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Part extends Model
 {
-    //
+    public $timestamps = false;
 }
