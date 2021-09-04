@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/weapons', 'WeaponController@index');
+
+//指定されたもの以外の時はindexを表示する。
+Route::get('/{any}', function() {
+    return view('index');
+})->where('any', '.*');
