@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//ルーティング定義のないパスは全てtopを表示するようにする
+Route::get('/{any}', function() {
+    return view('top');
+})->where('any', '.*');
