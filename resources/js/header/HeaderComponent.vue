@@ -3,7 +3,7 @@
         <v-app-bar dark app>
             <v-toolbar-title><router-link to="/">MonsterHunterMyTemplate</router-link></v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-button>ログイン</v-button>
+            <v-btn>ログイン</v-btn>
             <template v-slot:extension>
                 <v-tabs grow>
                     <v-tab to="/">タイムライン</v-tab>
@@ -16,6 +16,7 @@
         </v-app-bar>
         <v-main>
             <v-container fluid>
+                <create-post-component></create-post-component>
                 <router-view></router-view>
             </v-container>
         </v-main>

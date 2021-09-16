@@ -4,6 +4,7 @@ import LankComponent from './lank/LankComponent';
 import SerchComponent from './serch/SerchComponent';
 import ActComponent from './activity/ActComponent';
 import MyPageComponent from './mypage/MyPageComponent';
+import PostFormComponent from './form/PostFormComponent';
 
 export default new Router({
     mode:'history',
@@ -27,6 +28,10 @@ export default new Router({
         {
             path:'/mypage',
             component:MyPageComponent,
+        },
+        {
+            path:'/create',
+            component:PostFormComponent,
         }
     ]
 })
