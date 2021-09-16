@@ -1,6 +1,5 @@
 <template>
     <v-container>
-        {{skillForm}}
         <v-row>
             <v-col cols=6>
                 <v-text-field
@@ -17,8 +16,7 @@
                     item-value='id'
                     label='武器'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col cols=6>
                 <v-select
@@ -28,8 +26,7 @@
                     item-value='id'
                     label='頭防具'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
         </v-row>
         <v-row>
@@ -41,8 +38,7 @@
                     item-value='id'
                     label='胸防具'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col cols=6>
                 <v-select
@@ -52,8 +48,7 @@
                     item-value='id'
                     label='腕防具'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
         </v-row>
         <v-row>
@@ -65,8 +60,7 @@
                     item-value='id'
                     label='腰防具'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col cols=6>
                 <v-select
@@ -76,8 +70,7 @@
                     item-value='id'
                     label='脚防具'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
         </v-row>
         護石
@@ -90,16 +83,14 @@
                     item-value='id'
                     label='スキル名'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col cols=1>
-                    <v-select
+                <v-select
                     :items='number'
                     label='レベル'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col cols=3>
                 <v-select
@@ -109,101 +100,82 @@
                     item-value='id'
                     label='スキル名'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col cols=1>
-                    <v-select
-                    :items='number'
-                    label='レベル'
-                    dense
-                >
-                </v-select>
-            </v-col>
-            <v-col cols=3>
                 <v-select
-                    v-model='postForm.charm_skill3_id'
-                    :items='skills'
-                    item-text='name'
-                    item-value='id'
-                    label='スキル名'
-                    dense
-                >
-                </v-select>
-            </v-col>
-            <v-col cols=1>
-                    <v-select
                     :items='number'
                     label='レベル'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
+        </v-row>
+        <v-row>
             <v-col
                 cols=4
                 style="display:inline-flex"
             >
                 スロット1
-                    <v-select
+                <v-select
                     :items='number'
                     label='個数'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col
                 cols=4
                 style="display:inline-flex"
             >
                 スロット2
-                    <v-select
+                <v-select
                     :items='number'
                     label='個数'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
             <v-col
                 cols=4
                 style="display:inline-flex"
             >
                 スロット3
-                    <v-select
+                <v-select
                     :items='number'
                     label='個数'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
         </v-row>
         装飾品
+        <v-btn
+            @click='addOrnamentForm'
+        >追加</v-btn>
         <v-row>
-            <v-col cols=2>
+            <v-col
+                cols=3
+                v-for='(form, index) in ornamentForm'
+                :key='index'
+                style="display:inline-flex"
+            >
                 <v-select
-                    v-model='postForm.ornament_id'
+                    v-model='ornamentForm[index].ornament_id'
                     :items='ornaments'
                     item-text='name'
                     item-value='id'
                     label='装飾品名'
                     dense
-                >
-                </v-select>
-            </v-col>
-            <v-col cols=1>
-                    <v-select
+                ></v-select>
+                <v-select
+                    v-model='ornamentForm[index].num'
                     :items='number'
                     label='個数'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
         </v-row>
         発動スキル
         <v-btn
             @click='addSkillForm'
-        >
-            追加
-        </v-btn>
+        >追加</v-btn>
         <v-row>
             <v-col
                 cols=4
@@ -212,21 +184,19 @@
                 style="display:inline-flex"
             >
                 <v-select
-                    v-model='skillForm[index].name'
+                    v-model='skillForm[index].skill_id'
                     :items='skills'
                     item-text='name'
                     item-value='id'
                     label='スキル名'
                     dense
-                >
-                </v-select>
+                ></v-select>
                 <v-select
-                    v-model='skillForm[index].skill'
+                    v-model='skillForm[index].level'
                     :items='number'
                     label='レベル'
                     dense
-                >
-                </v-select>
+                ></v-select>
             </v-col>
         </v-row>
         <v-row>
@@ -254,7 +224,8 @@
                 ornaments:[],
                 postForm:{},
                 number:[1,2,3,4,5,6,7,8,9,10],
-                skillForm:[{name:'', skill:''}]
+                ornamentForm:[{ornament_id:'',num:''}],
+                skillForm:[{skill_id:'', level:''}]
             }
         },
         methods:{
@@ -285,10 +256,17 @@
             },
             addSkillForm(){
                 var baseSkillForm={
-                    name:'',
-                    skill:''
+                    skill_id:'',
+                    level:''
                 }
                 this.skillForm.push(baseSkillForm);
+            },
+            addOrnamentForm(){
+                var baseOrnamentForm={
+                    ornament_id:'',
+                    num:''
+                }
+                this.ornamentForm.push(baseOrnamentForm);
             },
         },
         computed:{
