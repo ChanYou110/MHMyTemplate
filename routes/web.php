@@ -18,6 +18,7 @@ Route::get('/weapons', 'WeaponController@index');
 Route::get('/skills', 'SkillController@index');
 Route::get('/equipment', 'EquipmentController@index');
 Route::get('/ornaments', 'OrnamentController@index');
+Route::post('/posts', 'PostController@store');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {

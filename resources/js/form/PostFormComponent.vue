@@ -3,6 +3,7 @@
         <v-row>
             <v-col cols=6>
                 <v-text-field
+                    v-model='postForm.title'
                     label='テンプレ名'
                 ></v-text-field>
             </v-col>
@@ -20,7 +21,7 @@
             </v-col>
             <v-col cols=6>
                 <v-select
-                    v-model='postForm.headEquipment_id'
+                    v-model='postForm.head_equipment_id'
                     :items='headEquipment'
                     item-text='name'
                     item-value='id'
@@ -32,7 +33,7 @@
         <v-row>
             <v-col cols=6>
                 <v-select
-                    v-model='postForm.chestEquipment_id'
+                    v-model='postForm.chest_equipment_id'
                     :items='chestEquipment'
                     item-text='name'
                     item-value='id'
@@ -42,7 +43,7 @@
             </v-col>
             <v-col cols=6>
                 <v-select
-                    v-model='postForm.armEquipment_id'
+                    v-model='postForm.arm_equipment_id'
                     :items='armEquipment'
                     item-text='name'
                     item-value='id'
@@ -54,7 +55,7 @@
         <v-row>
             <v-col cols=6>
                 <v-select
-                    v-model='postForm.waistEquipment_id'
+                    v-model='postForm.waist_equipment_id'
                     :items='waistEquipment'
                     item-text='name'
                     item-value='id'
@@ -64,7 +65,7 @@
             </v-col>
             <v-col cols=6>
                 <v-select
-                    v-model='postForm.legEquipment_id'
+                    v-model='postForm.leg_equipment_id'
                     :items='legEquipment'
                     item-text='name'
                     item-value='id'
@@ -77,7 +78,7 @@
         <v-row>
             <v-col cols=3>
                 <v-select
-                    v-model='postForm.charm_skill1_id'
+                    v-model='charmForm.skill1_id'
                     :items='skills'
                     item-text='name'
                     item-value='id'
@@ -87,6 +88,7 @@
             </v-col>
             <v-col cols=1>
                 <v-select
+                    v-model='charmForm.skill1_level'
                     :items='number'
                     label='レベル'
                     dense
@@ -94,7 +96,7 @@
             </v-col>
             <v-col cols=3>
                 <v-select
-                    v-model='postForm.charm_skill2_id'
+                    v-model='charmForm.skill2_id'
                     :items='skills'
                     item-text='name'
                     item-value='id'
@@ -104,6 +106,7 @@
             </v-col>
             <v-col cols=1>
                 <v-select
+                    v-model='charmForm.skill2_level'
                     :items='number'
                     label='レベル'
                     dense
@@ -117,6 +120,7 @@
             >
                 スロット1
                 <v-select
+                    v-model='charmForm.slot1'
                     :items='number'
                     label='個数'
                     dense
@@ -128,6 +132,7 @@
             >
                 スロット2
                 <v-select
+                    v-model='charmForm.slot2'
                     :items='number'
                     label='個数'
                     dense
@@ -139,6 +144,7 @@
             >
                 スロット3
                 <v-select
+                    v-model='charmForm.slot3'
                     :items='number'
                     label='個数'
                     dense
@@ -165,7 +171,7 @@
                     dense
                 ></v-select>
                 <v-select
-                    v-model='ornamentForm[index].num'
+                    v-model='ornamentForm[index].number'
                     :items='number'
                     label='個数'
                     dense
@@ -203,11 +209,13 @@
             <v-col cols=12>
                 <v-textarea
                     outlined
+                    v-model='postForm.body'
                     label='説明文'
                 ></v-textarea>
             </v-col>
         </v-row>
         <v-btn
+            @click='sendPostForm'
             dark
         >投稿</v-btn>
     </v-container>
@@ -223,9 +231,10 @@
                 skills:[],
                 ornaments:[],
                 postForm:{},
-                number:[1,2,3,4,5,6,7,8,9,10],
-                ornamentForm:[{ornament_id:'',num:''}],
-                skillForm:[{skill_id:'', level:''}]
+                number:[0,1,2,3,4,5,6,7,8,9,10],
+                ornamentForm:[{ornament_id:'',number:''}],
+                skillForm:[{skill_id:'', level:''}],
+                charmForm:{}
             }
         },
         methods:{
@@ -267,6 +276,19 @@
                     num:''
                 }
                 this.ornamentForm.push(baseOrnamentForm);
+            },
+            sendPostForm(){
+                axios({
+                    url:'/posts',
+                    method:'post',
+                    data:{
+                    postForm:this.postForm,
+                    ornamentForm:this.ornamentForm,
+                    skillForm:this.skillForm,
+                    charmForm:this.charmForm
+                }}).then(()=>{
+                    alert('投稿されました。');
+                })
             },
         },
         computed:{
