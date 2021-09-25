@@ -15,9 +15,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/weapons', 'WeaponController@index');
+Route::get('/charms', 'CharmController@index');
 Route::get('/skills', 'SkillController@index');
 Route::get('/equipment', 'EquipmentController@index');
 Route::get('/ornaments', 'OrnamentController@index');
+Route::get('/post', 'PostController@index');
+Route::get('/my-post/{user_id}', 'PostController@getMyPost');
+Route::get('/posts/{post}', 'PostController@show');
+// Route::post('/posts/{post}/update', 'PostController@update');
+Route::get('/user','UserController@getLoginUser');
+Route::get('/users/{user}','UserController@getUser');
 Route::post('/posts', 'PostController@store');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
