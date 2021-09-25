@@ -1,10 +1,13 @@
 import Router from 'vue-router';
 import TopComponent from './timeline/TopComponent';
 import LankComponent from './lank/LankComponent';
-import SerchComponent from './serch/SerchComponent';
+import SearchComponent from './search/SearchComponent';
 import ActComponent from './activity/ActComponent';
 import MyPageComponent from './mypage/MyPageComponent';
 import PostFormComponent from './form/PostFormComponent';
+import DetailComponent from './detail/DetailComponent';
+import ResultComponent from './result/ResultComponent';
+import EditPostComponent from './form/EditPostComponent';
 
 export default new Router({
     mode:'history',
@@ -18,20 +21,37 @@ export default new Router({
             component:LankComponent,
         },
         {
-            path:'/serch',
-            component:SerchComponent,
+            path:'/search',
+            component:SearchComponent,
         },
         {
             path:'/act',
             component:ActComponent,
         },
         {
-            path:'/mypage',
+            path:'/mypage/:id',
+            name:'myPage',
+            props:true,
             component:MyPageComponent,
         },
         {
             path:'/create',
             component:PostFormComponent,
+        },
+        {
+            path:'/edit/:id',
+            name:'postEdit',
+            component:EditPostComponent,
+        },
+        {
+            path:'/result',
+            component:ResultComponent,
+        },
+        {
+            path:'/detail/:id',
+            name:'postDetail',
+            props:true,
+            component:DetailComponent,
         }
     ]
 })

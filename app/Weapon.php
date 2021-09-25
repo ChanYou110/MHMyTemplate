@@ -14,4 +14,8 @@ class Weapon extends Model
     {
         return $this->belongsTo('App\WeaponType', 'weapon_types_id');
     }
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }

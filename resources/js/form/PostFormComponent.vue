@@ -273,7 +273,7 @@
             addOrnamentForm(){
                 var baseOrnamentForm={
                     ornament_id:'',
-                    num:''
+                    number:''
                 }
                 this.ornamentForm.push(baseOrnamentForm);
             },
