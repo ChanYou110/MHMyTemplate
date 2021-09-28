@@ -1,5 +1,7 @@
 <template>
     <v-container>
+        {{postForm}}
+        {{charmForm}}
         <v-row>
             <v-col cols=6>
                 <v-text-field
@@ -8,83 +10,144 @@
                 ></v-text-field>
             </v-col>
         </v-row>
-        <v-row>
+                <v-row>
             <v-col cols=6>
-                <v-select
+                <vue-simple-suggest
                     v-model='postForm.weapon_id'
-                    :items='weapons'
-                    item-text='name'
-                    item-value='id'
-                    label='武器'
-                    dense
-                ></v-select>
+                    :list='weapons'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                >
+                    <input type='text' placeholder='武器'>
+                </vue-simple-suggest>
             </v-col>
             <v-col cols=6>
-                <v-select
+                <vue-simple-suggest
                     v-model='postForm.head_equipment_id'
-                    :items='headEquipment'
-                    item-text='name'
-                    item-value='id'
-                    label='頭防具'
-                    dense
-                ></v-select>
+                    :list='headEquipment'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='頭防具'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='postForm.head_equipment_id'-->
+                <!--    :items='headEquipment'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='頭防具'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <v-select
+                <vue-simple-suggest
                     v-model='postForm.chest_equipment_id'
-                    :items='chestEquipment'
-                    item-text='name'
-                    item-value='id'
-                    label='胸防具'
-                    dense
-                ></v-select>
+                    :list='chestEquipment'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='胸防具'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='postForm.chest_equipment_id'-->
+                <!--    :items='chestEquipment'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='胸防具'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
             <v-col cols=6>
-                <v-select
+                <vue-simple-suggest
                     v-model='postForm.arm_equipment_id'
-                    :items='armEquipment'
-                    item-text='name'
-                    item-value='id'
-                    label='腕防具'
-                    dense
-                ></v-select>
+                    :list='armEquipment'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='腕防具'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='postForm.arm_equipment_id'-->
+                <!--    :items='armEquipment'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='腕防具'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <v-select
+                <vue-simple-suggest
                     v-model='postForm.waist_equipment_id'
-                    :items='waistEquipment'
-                    item-text='name'
-                    item-value='id'
-                    label='腰防具'
-                    dense
-                ></v-select>
+                    :list='waistEquipment'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='腰防具'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='postForm.waist_equipment_id'-->
+                <!--    :items='waistEquipment'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='腰防具'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
             <v-col cols=6>
-                <v-select
+                <vue-simple-suggest
                     v-model='postForm.leg_equipment_id'
-                    :items='legEquipment'
-                    item-text='name'
-                    item-value='id'
-                    label='脚防具'
-                    dense
-                ></v-select>
+                    :list='legEquipment'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='脚防具'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='postForm.leg_equipment_id'-->
+                <!--    :items='legEquipment'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='脚防具'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
         </v-row>
         護石
         <v-row>
             <v-col cols=3>
-                <v-select
+                <vue-simple-suggest
                     v-model='charmForm.skill1_id'
-                    :items='skills'
-                    item-text='name'
-                    item-value='id'
-                    label='スキル名'
-                    dense
-                ></v-select>
+                    :list='skills'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='スキル名'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='charmForm.skill1_id'-->
+                <!--    :items='skills'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='スキル名'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
             <v-col cols=1>
                 <v-select
@@ -95,14 +158,24 @@
                 ></v-select>
             </v-col>
             <v-col cols=3>
-                <v-select
+               <vue-simple-suggest
                     v-model='charmForm.skill2_id'
-                    :items='skills'
-                    item-text='name'
-                    item-value='id'
-                    label='スキル名'
-                    dense
-                ></v-select>
+                    :list='skills'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='スキル名'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='charmForm.skill2_id'-->
+                <!--    :items='skills'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='スキル名'-->
+                <!--    dense-->
+                <!--</v-select>-->
             </v-col>
             <v-col cols=1>
                 <v-select
@@ -162,14 +235,24 @@
                 :key='index'
                 style="display:inline-flex"
             >
-                <v-select
+                <vue-simple-suggest
                     v-model='ornamentForm[index].ornament_id'
-                    :items='ornaments'
-                    item-text='name'
-                    item-value='id'
-                    label='装飾品名'
-                    dense
-                ></v-select>
+                    :list='ornaments'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='装飾品名'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='ornamentForm[index].ornament_id'-->
+                <!--    :items='ornaments'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='装飾品名'-->
+                <!--    dense-->
+                <!--</v-select>-->
                 <v-select
                     v-model='ornamentForm[index].number'
                     :items='number'
@@ -189,14 +272,24 @@
                 :key='index'
                 style="display:inline-flex"
             >
-                <v-select
+                <vue-simple-suggest
                     v-model='skillForm[index].skill_id'
-                    :items='skills'
-                    item-text='name'
-                    item-value='id'
-                    label='スキル名'
-                    dense
-                ></v-select>
+                    :list='skills'
+                    display-attribute='name'
+                    value-attribute='id'
+                    :filter-by-query='true'
+                    
+                >
+                    <input type='text' placeholder='スキル名'>
+                </vue-simple-suggest>
+                <!--<v-select-->
+                <!--    v-model='skillForm[index].skill_id'-->
+                <!--    :items='skills'-->
+                <!--    item-text='name'-->
+                <!--    item-value='id'-->
+                <!--    label='スキル名'-->
+                <!--    dense-->
+                <!--</v-select>-->
                 <v-select
                     v-model='skillForm[index].level'
                     :items='number'

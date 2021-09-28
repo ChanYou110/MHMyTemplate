@@ -26,6 +26,7 @@ Route::get('/posts/{post}', 'PostController@show');
 Route::get('/user','UserController@getLoginUser');
 Route::get('/users/{user}','UserController@getUser');
 Route::post('/posts', 'PostController@store');
+Route::get('/result', 'PostController@search');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {
