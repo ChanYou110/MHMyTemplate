@@ -21,6 +21,16 @@ Vue.use(Vuetify);
 import CreatePostComponent from './btn/CreatePostComponent';
 Vue.component('create-post-component', CreatePostComponent);
 
+import VueSimpleSuggest from 'vue-simple-suggest';
+import 'vue-simple-suggest/dist/styles.css';
+Vue.component('VueSimpleSuggest', VueSimpleSuggest);
+
+// import CoolSelectPlugin from 'vue-cool-select'
+// Vue.use(CoolSelectPlugin);
+
+// import CoolSelect from 'vue-cool-select';
+// Vue.component('CoolSelect', CoolSelect);
+
 const app = new Vue({
     el: '#app',
     router,
