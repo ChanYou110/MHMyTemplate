@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class Post extends Model
 {
     //id以外が保存されるようにする。
     protected $guarded = ['id'];
+    
+    //jsonに含めるアクセサ
+    protected $appends = ['like_check', 'count'];
     
     //リレーション
     public function ornaments()
@@ -52,6 +57,14 @@ class Post extends Model
     }
     public function likes()
     {
-        return $this->hasMany(App\Like);
+        return $this->hasMany('App\Like');
+    }
+    
+    public function getLikeCheckAttribute(){
+        return $this->likes()->get()->contains('user_id', Auth::id());
+    }
+    
+    public function getCountAttribute(){
+        return $this->likes()->count();
     }
 }

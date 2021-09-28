@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Charm;
 use App\User;
+use App\Like;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     function index(Post $post){
         return $post = Post::with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
                                 'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
-                                'user', 'skills', 'ornaments')->get();
+                                'user', 'skills', 'ornaments', 'likes')->get();
     }
     function show(Post $post){
         $post->weapon;
@@ -47,6 +49,39 @@ class PostController extends Controller
     //     return $post->fill($charm_inputs, $skill_inputs, $ornament_inputs, $post_inputs)->save();
     // }
     
+    function search(Request $request){
+        
+        $search_data = [];
+        if($request->weapon_id)
+        {
+            $search_data['weapon_id'] = $request->weapon_id;
+        }
+        if($request->head_equipment_id)
+        {
+            $search_data['head_equipment_id'] = $request->head_equipment_id;
+        }
+        if($request->chest_equipment_id)
+        {
+            $search_data['chest_equipment_id'] = $request->chest_equipment_id;
+        }
+        if($request->arm_equipment_id)
+        {
+            $search_data['arm_equipment_id'] = $request->arm_equipment_id;
+        }if($request->waist_equipment_id)
+        {
+            $search_data['waist_equipment_id'] = $request->waist_equipment_id;
+        }
+        if($request->leg_equipment_id)
+        {
+            $search_data['leg_equipment_id'] = $request->leg_equipment_id;
+        }
+        $results = Post::where($search_data)->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
+                                'user', 'skills', 'ornaments')->get();
+        // dd($results);
+        return $results;
+    }
+    
     function store(Request $request){
         //$requestの中身を見る。
         // dd($request);
@@ -73,5 +108,20 @@ class PostController extends Controller
             $post->skills()->attach($skill_inputs);
             $post->ornaments()->attach($ornament_inputs);
         });
+    }
+    
+    function like(Post $post){
+        if(!$post->getLikeCheckAttribute()){
+            $like = Like::create([
+                                'post_id'=>$post->id,
+                                'user_id'=>Auth::id()
+                                ]);
+        }
+    }
+    function deleteLike(Post $post){
+        if($post->getLikeCheckAttribute()){
+            $like = Like::where('post_id', $post->id)->where('user_id', Auth::id())->first();
+            $like->delete();
+        }
     }
 }
