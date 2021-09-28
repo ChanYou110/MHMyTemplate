@@ -15,6 +15,20 @@
                         >
                         <v-card-title>
                             {{post.title}}
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                @click.prevent='deleteLike(post.id)'
+                                v-if='post.like_check'
+                            >
+                                いいね取り消し
+                            </v-btn>
+                            <v-btn
+                                @click.prevent='like(post.id)'
+                                v-else
+                            >
+                                いいね
+                            </v-btn>
+                            
                         </v-card-title>
                         <template>
                          <v-simple-table>
@@ -164,6 +178,16 @@
             //       this.ornament_post = response.data;
             //   })
             // },
+            like(id){
+                axios.get(`/posts/like/${id}`).then((response)=>{
+                    this.getPost();
+                })
+            },
+            deleteLike(id){
+                axios.get(`/posts/unlike/${id}`).then((response)=>{
+                    this.getPost();
+                })
+            },
         },
         mounted() {
             // this.getWeapon();

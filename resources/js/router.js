@@ -43,10 +43,6 @@ export default new Router({
             name:'postEdit',
             component:EditPostComponent,
         },
-        // {
-        //     path:'/result',
-        //     component:ResultComponent,
-        // },
         {
             path:'/detail/:id',
             name:'postDetail',

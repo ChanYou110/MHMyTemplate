@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Charm;
 use App\User;
+use App\Like;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     function index(Post $post){
         return $post = Post::with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
                                 'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
-                                'user', 'skills', 'ornaments')->get();
+                                'user', 'skills', 'ornaments', 'likes')->get();
     }
     function show(Post $post){
         $post->weapon;
@@ -106,5 +108,20 @@ class PostController extends Controller
             $post->skills()->attach($skill_inputs);
             $post->ornaments()->attach($ornament_inputs);
         });
+    }
+    
+    function like(Post $post){
+        if(!$post->getLikeCheckAttribute()){
+            $like = Like::create([
+                                'post_id'=>$post->id,
+                                'user_id'=>Auth::id()
+                                ]);
+        }
+    }
+    function deleteLike(Post $post){
+        if($post->getLikeCheckAttribute()){
+            $like = Like::where('post_id', $post->id)->where('user_id', Auth::id())->first();
+            $like->delete();
+        }
     }
 }
