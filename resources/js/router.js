@@ -44,10 +44,6 @@ export default new Router({
             component:EditPostComponent,
         },
         {
-            path:'/result',
-            component:ResultComponent,
-        },
-        {
             path:'/detail/:id',
             name:'postDetail',
             props:true,
