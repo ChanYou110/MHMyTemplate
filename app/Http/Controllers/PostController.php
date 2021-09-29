@@ -124,4 +124,21 @@ class PostController extends Controller
             $like->delete();
         }
     }
+    
+    // function lanking(Post $post){
+    //     return $post = Post::with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+    //                             'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
+    //                             'user', 'skills', 'ornaments', 'likes')->orderBy('', 'desc')->get();
+    // }
+    
+    function likeIndex(Post $post){
+        return $post = Post::select('posts.*')
+                            ->join('likes', 'likes.post_id', '=', 'posts.id')
+                            ->where('likes.user_id', Auth::id())
+                            ->orderBy('likes.created_at', 'desc')
+                            ->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
+                                'user', 'skills', 'ornaments', 'likes')
+                            ->get();
+    }
 }

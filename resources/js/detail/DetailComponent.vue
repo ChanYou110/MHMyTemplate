@@ -30,7 +30,24 @@
         </v-navigation-drawer>
         
         <v-container>
-            <div>{{posts.title}}</div>
+            <div>
+                <div>{{posts.title}}</div>
+                <v-spacer></v-spacer>
+                <div>
+                    <v-icon
+                        @click.prevent='deleteLike(posts.id)'
+                        v-if='posts.like_check'
+                        color='red'
+                    >mdi-heart
+                    </v-icon>
+                    <v-icon
+                        @click.prevent='like(posts.id)'
+                        v-else
+                    >mdi-heart
+                    </v-icon>
+                    {{posts.count}}
+                </div>
+            </div>
             <div v-if='posts.weapon'>武器：{{posts.weapon.name}}</div>
             <div v-if='posts.head_equipment'>頭：{{posts.head_equipment.name}}</div>
             <div v-if='posts.chest_equipment'>胴：{{posts.chest_equipment.name}}</div>
@@ -105,7 +122,17 @@
             },
             editPost(){
                 this.$router.push({path:`/edit/${this.$route.params.id}`})
-            }
+            },
+            like(id){
+                axios.get(`/posts/like/${id}`).then((response)=>{
+                    this.getPostDetail();
+                })
+            },
+            deleteLike(id){
+                axios.get(`/posts/unlike/${id}`).then((response)=>{
+                    this.getPostDetail();
+                })
+            },
         },
         mounted() {
             this.getPostDetail();
