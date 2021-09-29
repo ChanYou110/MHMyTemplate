@@ -29,6 +29,8 @@ Route::post('/posts', 'PostController@store');
 Route::get('/result', 'PostController@search');
 Route::get('/posts/like/{post}', 'PostController@like');
 Route::get('/posts/unlike/{post}', 'PostController@deleteLike');
+Route::get('/lanking','PostController@lanking');
+Route::get('/my-like','PostController@likeIndex');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {

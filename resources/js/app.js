@@ -25,6 +25,9 @@ import VueSimpleSuggest from 'vue-simple-suggest';
 import 'vue-simple-suggest/dist/styles.css';
 Vue.component('VueSimpleSuggest', VueSimpleSuggest);
 
+import VueStar from 'vue-star';
+Vue.component('VueStar', VueStar);
+
 const app = new Vue({
     el: '#app',
     router,
