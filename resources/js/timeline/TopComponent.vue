@@ -90,33 +90,6 @@
                             </template>
                         </v-simple-table>
                         </template>
-                        <!--<v-card-text>-->
-                        <!--    {{post.weapon.name}}-->
-                        <!--    {{post.head_equipment.name}}-->
-                        <!--    {{post.chest_equipment.name}}-->
-                        <!--    {{post.arm_equipment.name}}-->
-                        <!--    {{post.waist_equipment.name}}-->
-                        <!--    {{post.leg_equipment.name}}-->
-                        <!--</v-card-text>-->
-                        <!--<v-card-text>-->
-                        <!--    {{post.charm.skill1.name}}-->
-                        <!--    {{post.charm.skill2.name}}-->
-                        <!--    {{post.charm.slot1}}-->
-                        <!--    {{post.charm.slot2}}-->
-                        <!--    {{post.charm.slot3}}-->
-                        <!--</v-card-text>-->
-                        <!--<v-card-text>-->
-                        <!--    <div v-for='(skill, index) in post.skills'-->
-                        <!--        :key='skill.name'-->
-                        <!--        style="display:inline-flex"-->
-                        <!--    >-->
-                        <!--        <div v-if='index != 0'>/&nbsp;</div>-->
-                        <!--        {{post.skills[index].name}}Lv.{{post.skills[index].pivot.level}}-->
-                        <!--    </div>-->
-                        <!--</v-card-text>-->
-                        <!--<v-card-text>-->
-                        <!--    {{post.user.name}}-->
-                        <!--</v-card-text>-->
                     </v-card>
                 </v-col>
             </v-row>
@@ -128,57 +101,15 @@
     export default {
         data(){
             return {
-                // weapons:{},
-                // charms:[],
-                // equipment:{},
-                // skills:{},
-                // ornaments:{},
                 posts:[],
-                // post_skill:{},
-                // ornament_post:{}
             }
         },
         methods:{
-            // getWeapon(){
-            //   axios.get('/weapons').then((response)=>{
-            //       this.weapons = response.data;
-            //   })
-            // },
-            // getCharm(){
-            //   axios.get('/charms').then((response)=>{
-            //       this.charms = response.data;
-            //   })
-            // },
-            // getEquipment(){
-            //   axios.get('/equipment').then((response)=>{
-            //       this.equipment = response.data;
-            //   })
-            // },
-            // getSkill(){
-            //   axios.get('/skills').then((response)=>{
-            //       this.skills = response.data;
-            //   })
-            // },
-            // getOrnament(){
-            //   axios.get('/ornaments').then((response)=>{
-            //       this.ornaments = response.data;
-            //   })
-            // },
             getPost(){
               axios.get('/post').then((response)=>{
                   this.posts = response.data;
               })
             },
-            // getPostSkill(){
-            //   axios.get('/post_skill').then((response)=>{
-            //       this.post_skill = response.data;
-            //   })
-            // },
-            // getOrnamentPost(){
-            //   axios.get('/ornament_post').then((response)=>{
-            //       this.ornament_post = response.data;
-            //   })
-            // },
             like(id){
                 axios.get(`/posts/like/${id}`).then((response)=>{
                     this.getPost();
@@ -191,14 +122,7 @@
             },
         },
         mounted() {
-            // this.getWeapon();
-            // this.getSkill();
-            // this.getCharm();
-            // this.getEquipment();
-            // this.getOrnament();
             this.getPost();
-            // this.getPostSkill();
-            // this.getOrnamentPost();
         }
     }
 </script>

@@ -125,11 +125,14 @@ class PostController extends Controller
         }
     }
     
-    // function lanking(Post $post){
-    //     return $post = Post::with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
-    //                             'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
-    //                             'user', 'skills', 'ornaments', 'likes')->orderBy('', 'desc')->get();
-    // }
+    function lanking(Post $post){
+        return $post = Post::withCount('likes')
+                            ->orderBy('likes_count', 'desc')
+                            ->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
+                                'user', 'skills', 'ornaments', 'likes')
+                            ->get();
+    }
     
     function likeIndex(Post $post){
         return $post = Post::select('posts.*')
