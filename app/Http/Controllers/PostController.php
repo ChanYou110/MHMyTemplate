@@ -50,6 +50,7 @@ class PostController extends Controller
     // }
     
     function search(Request $request){
+        //  dd($requests);
         
         $search_data = [];
         if($request->weapon_id)

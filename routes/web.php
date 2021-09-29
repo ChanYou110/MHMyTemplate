@@ -26,6 +26,7 @@ Route::get('/posts/{post}', 'PostController@show');
 Route::get('/user','UserController@getLoginUser');
 Route::get('/users/{user}','UserController@getUser');
 Route::post('/posts', 'PostController@store');
+Route::get('/result', 'PostController@search');
 Route::get('/posts/like/{post}', 'PostController@like');
 Route::get('/posts/unlike/{post}', 'PostController@deleteLike');
 
