@@ -30,8 +30,8 @@
         "vue-axios": "^3.2.5",
         "vue-cool-select": "^3.5.2",
         "vue-router": "^3.5.2",
-        "vue-star": "0.0.4",
         "vue-simple-suggest": "^1.11.1",
+        "vue-star": "0.0.4",
         "vuetify": "^2.5.8"
     }
 }
