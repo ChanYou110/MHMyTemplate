@@ -17,7 +17,7 @@
                     :list='weapons'
                     display-attribute='name'
                     value-attribute='id'
-                    :filter-by-query='true'
+                    :filter-by-query='true' 
                 >
                     <input type='text' placeholder='武器'>
                 </vue-simple-suggest>

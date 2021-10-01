@@ -106,19 +106,19 @@
             }
         },
         methods:{
-            getPost(){
-              axios.get('/post').then((response)=>{
-                  this.posts = response.data;
-              })
-            },
+            // getPost(){
+            //   axios.get('/post').then((response)=>{
+            //       this.posts = response.data;
+            //   })
+            // },
             like(id){
                 axios.get(`/posts/like/${id}`).then((response)=>{
-                    this.getPost();
+                    this.timeline();
                 })
             },
             deleteLike(id){
                 axios.get(`/posts/unlike/${id}`).then((response)=>{
-                    this.getPost();
+                    this.timeline();
                 })
             },
             timeline(){
