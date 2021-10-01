@@ -1,35 +1,96 @@
 <template>
     <v-app>
         <v-container>
+            <v-row v-if='!posts[0]'>フォローしているユーザーがいません。</v-row>
             <v-row>
-                <v-col cols=12 md=6 lg=4>
-                    <v-card hover>
+                <v-col
+                    cols=12
+                    md=6
+                    lg=4
+                    v-for='(post, index) in posts'
+                    :key='post.title'
+                >
+                    <v-card 
+                        hover
+                        :to="{ name: 'postDetail', params: { id: post.id }}"
+                        >
                         <v-card-title>
-                            template1 title.
+                            {{post.title}}
+                            <v-spacer></v-spacer>
+                            <div>
+                                <v-icon
+                                    @click.prevent='deleteLike(post.id)'
+                                    v-if='post.like_check'
+                                    color='red'
+                                >mdi-heart
+                                </v-icon>
+                                <v-icon
+                                    @click.prevent='like(post.id)'
+                                    v-else
+                                >mdi-heart
+                                </v-icon>
+                                {{post.count}}
+                            </div>
                         </v-card-title>
-                        <v-card-text>
-                            テンプレ1内容
-                        </v-card-text>
-                    </v-card>
-                </v-col>
-                <v-col cols=12 md=6 lg=4>
-                    <v-card hover>
-                        <v-card-title>
-                            template2 title.
-                        </v-card-title>
-                        <v-card-text>
-                            テンプレ2内容
-                        </v-card-text>
-                    </v-card>
-                </v-col>
-                <v-col cols=12 md=6 lg=4>
-                    <v-card hover>
-                        <v-card-title>
-                            template3 title.
-                        </v-card-title>
-                        <v-card-text>
-                            テンプレ3内容
-                        </v-card-text>
+                        <template>
+                         <v-simple-table>
+                            <template v-slot:default>   
+                                <tbody>
+                                    <tr>
+                                        <td>武器：</td>
+                                        <td>{{post.weapon.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>頭：</td>
+                                        <td>{{post.head_equipment.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>胴：</td>
+                                        <td>{{post.chest_equipment.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>腕：</td>
+                                        <td>{{post.arm_equipment.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>腰：</td>
+                                        <td>{{post.waist_equipment.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>脚：</td>
+                                        <td>{{post.leg_equipment.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            護石
+                                            <ul>
+                                                <li>第1スキル：</li>
+                                                <li>第2スキル：</li>
+                                                <li>スロット1：</li>
+                                                <li>スロット2：</li>
+                                                <li>スロット3：</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li style="list-style-type:none">{{post.charm.skill1.name}}Lv.{{post.charm.skill1_level}}</li>
+                                                <li style="list-style-type:none">{{post.charm.skill2.name}}Lv.{{post.charm.skill2_level}}</li>
+                                                <li style="list-style-type:none">{{post.charm.slot1}}個</li>
+                                                <li style="list-style-type:none">{{post.charm.slot2}}個</li>
+                                                <li style="list-style-type:none">{{post.charm.slot3}}個</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{post.user.name}}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </template>
+                        </v-simple-table>
+                        </template>
                     </v-card>
                 </v-col>
             </v-row>
@@ -41,46 +102,34 @@
     export default {
         data(){
             return {
-                weapons:{},
-                charms:{},
-                equipment:{},
-                skills:{},
-                ornaments:{},
+                posts:[],
             }
         },
         methods:{
-            getWeapon(){
-              axios.get('/weapons').then((response)=>{
-                  this.weapons = response.data;
-              })
+            // getPost(){
+            //   axios.get('/post').then((response)=>{
+            //       this.posts = response.data;
+            //   })
+            // },
+            like(id){
+                axios.get(`/posts/like/${id}`).then((response)=>{
+                    this.timeline();
+                })
             },
-            getCharm(){
-              axios.get('/charms').then((response)=>{
-                  this.charms = response.data;
-              })
+            deleteLike(id){
+                axios.get(`/posts/unlike/${id}`).then((response)=>{
+                    this.timeline();
+                })
             },
-            getEquipment(){
-              axios.get('/equipment').then((response)=>{
-                  this.equipments = response.data;
-              })
-            },
-            getSkill(){
-              axios.get('/skills').then((response)=>{
-                  this.skills = response.data;
-              })
-            },
-            getOrnament(){
-              axios.get('/ornaments').then((response)=>{
-                  this.ornaments = response.data;
-              })
+            timeline(){
+                axios.get('/timeline').then((response)=>{
+                  this.posts = response.data;
+                })
             }
         },
         mounted() {
-            this.getWeapon();
-            this.getSkill();
-            this.getCharm();
-            this.getEquipment();
-            this.getOrnament();
+            // this.getPost();
+            this.timeline()
         }
     }
 </script>
