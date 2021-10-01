@@ -1,6 +1,7 @@
 <template>
     <v-app>
         <v-container>
+            <v-row v-if='!posts[0]'>フォローしているユーザーがいません。</v-row>
             <v-row>
                 <v-col
                     cols=12
@@ -120,9 +121,15 @@
                     this.getPost();
                 })
             },
+            timeline(){
+                axios.get('/timeline').then((response)=>{
+                  this.posts = response.data;
+                })
+            }
         },
         mounted() {
-            this.getPost();
+            // this.getPost();
+            this.timeline()
         }
     }
 </script>

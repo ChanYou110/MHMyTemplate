@@ -144,4 +144,14 @@ class PostController extends Controller
                                 'user', 'skills', 'ornaments', 'likes')
                             ->get();
     }
+    function timeline(Post $post){
+        return $post = Post::select('posts.*')
+                            ->join('follows', 'follows.follower_user_id', '=', 'posts.user_id')
+                            ->where('follows.follow_user_id', Auth::id())
+                            ->orderBy('posts.created_at', 'desc')
+                            ->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
+                                'user', 'skills', 'ornaments', 'likes')
+                            ->get();
+    }
 }

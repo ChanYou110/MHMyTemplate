@@ -9,7 +9,7 @@
                     <v-tab to="/">タイムライン</v-tab>
                     <v-tab to="/lank">ランキング</v-tab>
                     <v-tab to="/search">さがす</v-tab>
-                    <v-tab to="/act">通知</v-tab>
+                    <!--<v-tab to="/act">通知</v-tab>-->
                     <v-tab :to="{ name: 'myPage', params: { id: user.id }}">マイページ</v-tab>
                 </v-tabs>
             </template>
