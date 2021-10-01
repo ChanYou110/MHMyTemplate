@@ -3,17 +3,7 @@
     
         <v-row>
             <v-col cols=6>
-                <!--<vue-simple-suggest-->
-                <!--    v-model='postForm.weapon_id'-->
-                <!--    :list='weapons'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='武器'>-->
-                <!--</vue-simple-suggest>-->
-                <v-select
+                <v-autocomplete
                     v-model='searchForm.weapon_id'
                     :items='weapons'
                     item-text='name'
@@ -21,42 +11,22 @@
                     label='武器'
                     dense
                 >
-                </v-select>
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <!--<vue-simple-suggest-->
-                <!--    v-model='postForm.head_equipment_id'-->
-                <!--    :list='headEquipment'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='頭防具'>-->
-                <!--</vue-simple-suggest>-->
-                <v-select
+                <v-autocomplete
                     v-model='searchForm.head_equipment_id'
                     :items='headEquipment'
                     item-text='name'
                     item-value='id'
                     label='頭防具'
                     dense>
-                </v-select>
+                </v-autocomplete>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <!--<vue-simple-suggest-->
-                <!--    v-model='postForm.chest_equipment_id'-->
-                <!--    :list='chestEquipment'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='胸防具'>-->
-                <!--</vue-simple-suggest>-->
-                <v-select
+                <v-autocomplete
                     v-model='searchForm.chest_equipment_id'
                     :items='chestEquipment'
                     item-text='name'
@@ -64,20 +34,10 @@
                     label='胸防具'
                     dense
                     >
-                </v-select>
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <!--<vue-simple-suggest-->
-                <!--    v-model='postForm.arm_equipment_id'-->
-                <!--    :list='armEquipment'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='腕防具'>-->
-                <!--</vue-simple-suggest>-->
-                <v-select
+                <v-autocomplete
                     v-model='searchForm.arm_equipment_id'
                     :items='armEquipment'
                     item-text='name'
@@ -85,22 +45,12 @@
                     label='腕防具'
                     dense
                     >
-                </v-select>
+                </v-autocomplete>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <!--<vue-simple-suggest-->
-                <!--    v-model='postForm.waist_equipment_id'-->
-                <!--    :list='waistEquipment'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='腰防具'>-->
-                <!--</vue-simple-suggest>-->
-                <v-select
+                <v-autocomplete
                     v-model='searchForm.waist_equipment_id'
                     :items='waistEquipment'
                     item-text='name'
@@ -108,126 +58,19 @@
                     label='腰防具'
                     dense
                     >
-                </v-select>
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <!--<vue-simple-suggest-->
-                <!--    v-model='postForm.leg_equipment_id'-->
-                <!--    :list='legEquipment'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='脚防具'>-->
-                <!--</vue-simple-suggest>-->
-                <v-select
+                <v-autocomplete
                     v-model='searchForm.leg_equipment_id'
                     :items='legEquipment'
                     item-text='name'
                     item-value='id'
                     label='脚防具'
                     dense>
-                </v-select>
+                </v-autocomplete>
             </v-col>
         </v-row>
-        <!--護石-->
-        <!--<v-row>-->
-        <!--    <v-col cols=3>-->
-                <!--<vue-simple-suggest-->
-                <!--    v-model='charmForm.skill1_id'-->
-                <!--    :list='skills'-->
-                <!--    display-attribute='name'-->
-                <!--    value-attribute='id'-->
-                <!--    :filter-by-query='true'-->
-                    
-                <!-->
-                <!--    <input type='text' placeholder='スキル名'>-->
-                <!--</vue-simple-suggest>-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.skill1_id'-->
-        <!--            :items='skills'-->
-        <!--            item-text='name'-->
-        <!--            item-value='id'-->
-        <!--            label='スキル名'-->
-        <!--            dense>-->
-        <!--        </v-select>-->
-        <!--    </v-col>-->
-        <!--    <v-col cols=1>-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.skill1_level'-->
-        <!--            :items='number'-->
-        <!--            label='レベル'-->
-        <!--            dense-->
-        <!--        ></v-select>-->
-        <!--    </v-col>-->
-        <!--    <v-col cols=3>-->
-               <!--<vue-simple-suggest-->
-               <!--     v-model='charmForm.skill2_id'-->
-               <!--     :list='skills'-->
-               <!--     display-attribute='name'-->
-               <!--     value-attribute='id'-->
-               <!--     :filter-by-query='true'-->
-                    
-               <!-- >
-               <!--     <input type='text' placeholder='スキル名'>-->
-               <!-- </vue-simple-suggest>-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.skill2_id'-->
-        <!--            :items='skills'-->
-        <!--            item-text='name'-->
-        <!--            item-value='id'-->
-        <!--            label='スキル名'-->
-        <!--            dense>-->
-        <!--        </v-select>-->
-        <!--    </v-col>-->
-        <!--    <v-col cols=1>-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.skill2_level'-->
-        <!--            :items='number'-->
-        <!--            label='レベル'-->
-        <!--            dense-->
-        <!--        ></v-select>-->
-        <!--    </v-col>-->
-        <!--</v-row>-->
-        <!--<v-row>-->
-        <!--    <v-col-->
-        <!--        cols=4-->
-        <!--        style="display:inline-flex"-->
-        <!--    >-->
-        <!--        スロット1-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.slot1'-->
-        <!--            :items='number'-->
-        <!--            label='個数'-->
-        <!--            dense-->
-        <!--        ></v-select>-->
-        <!--    </v-col>-->
-        <!--    <v-col-->
-        <!--        cols=4-->
-        <!--        style="display:inline-flex"-->
-        <!--    >-->
-        <!--        スロット2-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.slot2'-->
-        <!--            :items='number'-->
-        <!--            label='個数'-->
-        <!--            dense-->
-        <!--        ></v-select>-->
-        <!--    </v-col>-->
-        <!--    <v-col-->
-        <!--        cols=4-->
-        <!--        style="display:inline-flex"-->
-        <!--    >-->
-        <!--        スロット3-->
-        <!--        <v-select-->
-        <!--            v-model='charmForm.slot3'-->
-        <!--            :items='number'-->
-        <!--            label='個数'-->
-        <!--            dense-->
-        <!--        ></v-select>-->
-        <!--    </v-col>-->
-        <!--</v-row>-->
         <v-btn
             dark
             @click='openResult'
@@ -329,18 +172,6 @@
                 </v-card>
             </v-col>
         </v-row>
-        <!--<v-row>-->
-        <!--    <v-col cols=6>-->
-        <!--        <v-select-->
-        <!--            v-model='postForm.weapon_id'-->
-        <!--            :items='filterWeapons'-->
-        <!--            item-text='name'-->
-        <!--            item-value='id'-->
-        <!--            label='武器'-->
-        <!--            dense-->
-        <!--        ><input v-model='filterText'></v-select>-->
-        <!--    </v-col>-->
-        <!--</v-row>-->
         
     </v-container>
 </template>

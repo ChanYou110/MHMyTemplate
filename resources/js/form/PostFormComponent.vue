@@ -1,7 +1,5 @@
 <template>
     <v-container>
-        {{postForm}}
-        {{charmForm}}
         <v-row>
             <v-col cols=6>
                 <v-text-field
@@ -12,142 +10,88 @@
         </v-row>
                 <v-row>
             <v-col cols=6>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='postForm.weapon_id'
-                    :list='weapons'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true' 
+                    :items='weapons'
+                    item-text='name'
+                    item-value='id'
+                    label='武器'
+                    dense
                 >
-                    <input type='text' placeholder='武器'>
-                </vue-simple-suggest>
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='postForm.head_equipment_id'
-                    :list='headEquipment'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='headEquipment'
+                    item-text='name'
+                    item-value='id'
+                    label='頭防具'
+                    dense
                 >
-                    <input type='text' placeholder='頭防具'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='postForm.head_equipment_id'-->
-                <!--    :items='headEquipment'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='頭防具'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='postForm.chest_equipment_id'
-                    :list='chestEquipment'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='chestEquipment'
+                    item-text='name'
+                    item-value='id'
+                    label='胸防具'
+                    dense
                 >
-                    <input type='text' placeholder='胸防具'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='postForm.chest_equipment_id'-->
-                <!--    :items='chestEquipment'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='胸防具'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='postForm.arm_equipment_id'
-                    :list='armEquipment'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='armEquipment'
+                    item-text='name'
+                    item-value='id'
+                    label='腕防具'
+                    dense
                 >
-                    <input type='text' placeholder='腕防具'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='postForm.arm_equipment_id'-->
-                <!--    :items='armEquipment'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='腕防具'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='postForm.waist_equipment_id'
-                    :list='waistEquipment'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='waistEquipment'
+                    item-text='name'
+                    item-value='id'
+                    label='腰防具'
+                    dense
                 >
-                    <input type='text' placeholder='腰防具'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='postForm.waist_equipment_id'-->
-                <!--    :items='waistEquipment'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='腰防具'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='postForm.leg_equipment_id'
-                    :list='legEquipment'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='legEquipment'
+                    item-text='name'
+                    item-value='id'
+                    label='脚防具'
+                    dense
                 >
-                    <input type='text' placeholder='脚防具'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='postForm.leg_equipment_id'-->
-                <!--    :items='legEquipment'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='脚防具'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
         </v-row>
         護石
         <v-row>
             <v-col cols=3>
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='charmForm.skill1_id'
-                    :list='skills'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='skills'
+                    item-text='name'
+                    item-value='id'
+                    label='スキル名'
+                    dense
                 >
-                    <input type='text' placeholder='スキル名'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='charmForm.skill1_id'-->
-                <!--    :items='skills'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='スキル名'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
             <v-col cols=1>
                 <v-select
@@ -158,24 +102,15 @@
                 ></v-select>
             </v-col>
             <v-col cols=3>
-               <vue-simple-suggest
+                <v-autocomplete
                     v-model='charmForm.skill2_id'
-                    :list='skills'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='skills'
+                    item-text='name'
+                    item-value='id'
+                    label='スキル名'
+                    dense
                 >
-                    <input type='text' placeholder='スキル名'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='charmForm.skill2_id'-->
-                <!--    :items='skills'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='スキル名'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
             </v-col>
             <v-col cols=1>
                 <v-select
@@ -191,11 +126,10 @@
                 cols=4
                 style="display:inline-flex"
             >
-                スロット1
                 <v-select
                     v-model='charmForm.slot1'
                     :items='number'
-                    label='個数'
+                    label='スロット1の個数'
                     dense
                 ></v-select>
             </v-col>
@@ -203,11 +137,10 @@
                 cols=4
                 style="display:inline-flex"
             >
-                スロット2
                 <v-select
                     v-model='charmForm.slot2'
                     :items='number'
-                    label='個数'
+                    label='スロット2の個数'
                     dense
                 ></v-select>
             </v-col>
@@ -215,11 +148,10 @@
                 cols=4
                 style="display:inline-flex"
             >
-                スロット3
                 <v-select
                     v-model='charmForm.slot3'
                     :items='number'
-                    label='個数'
+                    label='スロット3の個数'
                     dense
                 ></v-select>
             </v-col>
@@ -235,24 +167,15 @@
                 :key='index'
                 style="display:inline-flex"
             >
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='ornamentForm[index].ornament_id'
-                    :list='ornaments'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='ornaments'
+                    item-text='name'
+                    item-value='id'
+                    label='装飾品名'
+                    dense
                 >
-                    <input type='text' placeholder='装飾品名'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='ornamentForm[index].ornament_id'-->
-                <!--    :items='ornaments'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='装飾品名'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
                 <v-select
                     v-model='ornamentForm[index].number'
                     :items='number'
@@ -272,24 +195,15 @@
                 :key='index'
                 style="display:inline-flex"
             >
-                <vue-simple-suggest
+                <v-autocomplete
                     v-model='skillForm[index].skill_id'
-                    :list='skills'
-                    display-attribute='name'
-                    value-attribute='id'
-                    :filter-by-query='true'
-                    
+                    :items='skills'
+                    item-text='name'
+                    item-value='id'
+                    label='スキル名'
+                    dense
                 >
-                    <input type='text' placeholder='スキル名'>
-                </vue-simple-suggest>
-                <!--<v-select-->
-                <!--    v-model='skillForm[index].skill_id'-->
-                <!--    :items='skills'-->
-                <!--    item-text='name'-->
-                <!--    item-value='id'-->
-                <!--    label='スキル名'-->
-                <!--    dense-->
-                <!--</v-select>-->
+                </v-autocomplete>
                 <v-select
                     v-model='skillForm[index].level'
                     :items='number'
@@ -381,6 +295,7 @@
                     charmForm:this.charmForm
                 }}).then(()=>{
                     alert('投稿されました。');
+                    // this.$router.Push('/');
                 })
             },
         },
