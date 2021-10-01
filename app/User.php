@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -37,6 +38,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    //jsonに含めるアクセサ
+    protected $appends = ['follow_check', 'follower_check', 'follow_count', 'follower_count'];
+    
     public function posts()
     {
         return $this->hasMany('App\Post');
@@ -45,4 +49,25 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Like');
     }
+    public function follows()
+    {
+        return $this->hasMany('App\Follow', 'follow_user_id');
+    }
+    public function followers()
+    {
+        return $this->hasMany('App\Follow', 'follower_user_id');
+    }
+    public function getFollowCheckAttribute(){
+        return $this->follows()->get()->contains('follower_user_id', Auth::id());
+    }
+    public function getFollowerCheckAttribute(){
+        return $this->followers()->get()->contains('follow_user_id', Auth::id());
+    }
+    public function getFollowCountAttribute(){
+        return $this->follows()->count();
+    }
+    public function getFollowerCountAttribute(){
+        return $this->followers()->count();
+    }
+    
 }

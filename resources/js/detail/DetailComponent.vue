@@ -13,8 +13,6 @@
                     color="grey darken-1"
                     size='160'
                 ></v-avatar>
-    
-                <div><router-link :to="{ name: 'myPage', params: { id: posts.user.id }}">{{ posts.user.name }}</router-link></div>
             </v-sheet>
     
             <v-list>
@@ -23,6 +21,9 @@
                         <v-icon></v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
+                        <v-list-item-title><router-link :to="{ name: 'myPage', params: { id: posts.user.id }}">{{ posts.user.name }}</router-link></v-list-item-title>
+                        <v-list-item-title>フォロー{{posts.user.follow_count}}</v-list-item-title>
+                        <v-list-item-title>フォロワー{{posts.user.follower_count}}</v-list-item-title>
                         <v-list-item-title>{{posts.user.profile}}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>

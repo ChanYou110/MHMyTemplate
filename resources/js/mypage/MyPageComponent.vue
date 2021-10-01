@@ -13,17 +13,25 @@
                     color="grey darken-1"
                     size='160'
                 ></v-avatar>
-    
-                <div>{{ user.name }}</div>
             </v-sheet>
     
             <v-list>
                 <v-list-item>
-                    <v-list-item-icon>
-                        <v-icon></v-icon>
-                    </v-list-item-icon>
                     <v-list-item-content>
+                        <v-list-item-title>{{user.name}}</v-list-item-title>
+                        <v-list-item-title><router-link :to="{name: 'followIndex', params: { id: $route.params.id }} ">フォロー{{user.follow_count}}</router-link></v-list-item-title>
+                        <v-list-item-title><router-link :to="{name: 'followIndex', params: { id: $route.params.id }} ">フォロワー{{user.follower_count}}</router-link></v-list-item-title>
                         <v-list-item-title>{{user.profile}}</v-list-item-title>
+                        <v-btn
+                            v-if='user.id != login_user.id && !user.follower_check'
+                            @click='follow(user.id)'
+                            dark
+                        >フォロー</v-btn>
+                        <v-btn
+                            v-if='user.id != login_user.id && user.follower_check'
+                            @click='deleteFollow(user.id)'
+                        >フォロー解除</v-btn>
+                        
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -238,7 +246,8 @@
             return {
                 posts:{},
                 user:{},
-                like_posts:{}
+                like_posts:{},
+                login_user:{}
             }
         },
         methods:{
@@ -266,9 +275,25 @@
                 axios.get('/my-like').then((response)=>{
                     this.like_posts = response.data;
                 })
+            },
+            getLoginUser(){
+                axios.get('/user').then((response)=>{
+                    this.login_user = response.data;
+                })
+            },
+            follow(id){
+                axios.get(`/users/follow/${id}`).then((response)=>{
+                    this.getUser();
+                })
+            },
+            deleteFollow(id){
+                axios.get(`/users/unfollow/${id}`).then((response)=>{
+                    this.getUser();
+                })
             }
         },
         mounted() {
+            this.getLoginUser();
             this.getMyPost();
             this.getUser();
             this.getMyLike();

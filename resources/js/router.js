@@ -8,6 +8,7 @@ import PostFormComponent from './form/PostFormComponent';
 import DetailComponent from './detail/DetailComponent';
 import ResultComponent from './result/ResultComponent';
 import EditPostComponent from './form/EditPostComponent';
+import FFlistComponent from './mypage/FFlistComponent';
 
 export default new Router({
     mode:'history',
@@ -33,6 +34,12 @@ export default new Router({
             name:'myPage',
             props:true,
             component:MyPageComponent,
+        },
+        {
+            path:'/mypage/:id/follow',
+            name:'followIndex',
+            props:true,
+            component:FFlistComponent,
         },
         {
             path:'/create',
