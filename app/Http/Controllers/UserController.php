@@ -14,10 +14,13 @@ class UserController extends Controller
         // dd($user);
         return $user;
     }
+    
     function getUser(User $user){
-        $user->posts;
-        $user->follows;
-        $user->followers;
+        $user = User::where('id', $user->id)->with('posts', 'follows.followUser', 'followers.followerUser')->get();
+        // dd($user);
+        // $user->posts;
+        // $user->follows->followUser;
+        // $user->followers;
         return $user;
     }
     function follow(User $user){

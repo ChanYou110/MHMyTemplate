@@ -15,21 +15,21 @@
                 ></v-avatar>
             </v-sheet>
     
-            <v-list>
+            <v-list v-if='user'>
                 <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title>{{user.name}}</v-list-item-title>
-                        <v-list-item-title>フォロー{{user.follow_count}}</v-list-item-title>
-                        <v-list-item-title>フォロワー{{user.follower_count}}</v-list-item-title>
-                        <v-list-item-title>{{user.profile}}</v-list-item-title>
+                        <v-list-item-title>{{user[0].name}}</v-list-item-title>
+                        <v-list-item-title>フォロー{{user[0].follow_count}}</v-list-item-title>
+                        <v-list-item-title>フォロワー{{user[0].follower_count}}</v-list-item-title>
+                        <v-list-item-title>{{user[0].profile}}</v-list-item-title>
                         <v-btn
-                            v-if='user.id != login_user.id && !user.follower_check'
-                            @click='follow(user.id)'
+                            v-if='user[0].id != login_user.id && !user[0].follower_check'
+                            @click='follow(user[0].id)'
                             dark
                         >フォロー</v-btn>
                         <v-btn
-                            v-if='user.id != login_user.id && user.follower_check'
-                            @click='deleteFollow(user.id)'
+                            v-if='user[0].id != login_user.id && user[0].follower_check'
+                            @click='deleteFollow(user[0].id)'
                         >フォロー解除</v-btn>
                         
                     </v-list-item-content>
@@ -37,7 +37,7 @@
             </v-list>
         </v-navigation-drawer>
         
-        <v-card>
+        <v-card v-if='user[0].follows'>
             <v-tabs grow>
                 <v-tab >フォロー</v-tab>
                 <v-tab >フォロワー</v-tab>
@@ -45,36 +45,38 @@
                     <!--フォロー一覧-->
                     <v-container>
                         <v-row
-                            v-if='user.follows[0] == null'
+                            v-if='user[0].follows[0] == null'
                         >
                             フォローしている人はいません。
                         </v-row>
                         <v-row>
                             <v-col
-                                cols=12
-                                md=6
-                                lg=4
                             >
                                 <template>
                                     <v-simple-table
-                                        v-for='(follow_user, index) in user.follows'
-                                        :key='follow_user.name'
                                     >
                                         <template v-slot:default>   
                                             <tbody>
-                                                <tr>
-                                                    <td>{{follow_user.name}}</td>
-                                                    <td>
-                                                        <v-btn
-                                                            v-if='user.id != login_user.id && !user.follower_check'
-                                                            @click='follow(user.id)'
-                                                            dark
-                                                        >フォロー</v-btn>
-                                                        <v-btn
-                                                            v-if='user.id != login_user.id && user.follower_check'
-                                                            @click='deleteFollow(user.id)'
-                                                        >フォロー解除</v-btn>
-                                                    </td>
+                                                <tr
+                                                    v-for='(follow, index) in user[0].follows'
+                                                    :key='follow.follow_user.name'
+                                                >
+                                                    <router-link 
+                                                        :to="{ name: 'myPage', params: { id: follow.follow_user.id }}"
+                                                    >
+                                                        {{follow.follow_user.name}}
+                                                    </router-link>
+                                                    <!--<td>-->
+                                                    <!--    <v-btn-->
+                                                    <!--        v-if='follow_user.id != login_user.id && !follow_user.follower_check'-->
+                                                    <!--        @click='follow(user[0].id)'-->
+                                                    <!--        dark-->
+                                                    <!--    >フォロー</v-btn>-->
+                                                    <!--    <v-btn-->
+                                                    <!--        v-if='user[0].id != login_user.id && user[0].follower_check'-->
+                                                    <!--        @click='deleteFollow(user[0].id)'-->
+                                                    <!--    >フォロー解除</v-btn>-->
+                                                    <!--</td>-->
                                                 </tr>
                                             </tbody>
                                         </template>
@@ -89,12 +91,44 @@
                     <!--フォロワー一覧-->
                     <v-container>
                         <v-row
-                            v-if='user.followers[0] == null'
+                            v-if='user[0].followers[0] == null'
                         >
                             フォロワーはいません。
                         </v-row>
                         <v-row>
-                            
+                            <v-col
+                            >
+                                <template>
+                                    <v-simple-table
+                                    >
+                                        <template v-slot:default>   
+                                            <tbody>
+                                                <tr
+                                                    v-for='(follower, index) in user[0].followers'
+                                                    :key='follower.follower_user.name'
+                                                >
+                                                    <router-link 
+                                                        :to="{ name: 'myPage', params: { id: follower.follower_user.id }}"
+                                                    >
+                                                        {{follower.follower_user.name}}
+                                                    </router-link>
+                                                    <!--<td>-->
+                                                    <!--    <v-btn-->
+                                                    <!--        v-if='follow_user.id != login_user.id && !follow_user.follower_check'-->
+                                                    <!--        @click='follow(user[0].id)'-->
+                                                    <!--        dark-->
+                                                    <!--    >フォロー</v-btn>-->
+                                                    <!--    <v-btn-->
+                                                    <!--        v-if='user[0].id != login_user.id && user[0].follower_check'-->
+                                                    <!--        @click='deleteFollow(user[0].id)'-->
+                                                    <!--    >フォロー解除</v-btn>-->
+                                                    <!--</td>-->
+                                                </tr>
+                                            </tbody>
+                                        </template>
+                                    </v-simple-table>
+                                </template>
+                            </v-col>
                         </v-row>
                     </v-container>
                     

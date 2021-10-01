@@ -18,18 +18,21 @@
             <v-list>
                 <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title>{{user.name}}</v-list-item-title>
-                        <v-list-item-title><router-link :to="{name: 'followIndex', params: { id: $route.params.id }} ">フォロー{{user.follow_count}}</router-link></v-list-item-title>
-                        <v-list-item-title><router-link :to="{name: 'followIndex', params: { id: $route.params.id }} ">フォロワー{{user.follower_count}}</router-link></v-list-item-title>
-                        <v-list-item-title>{{user.profile}}</v-list-item-title>
+                        <div>
+                            
+                        </div>
+                        <v-list-item-title>{{user[0].name}}</v-list-item-title>
+                        <v-list-item-title><router-link :to="{name: 'followIndex', params: { id: $route.params.id }} ">フォロー{{user[0].follow_count}}</router-link></v-list-item-title>
+                        <v-list-item-title><router-link :to="{name: 'followIndex', params: { id: $route.params.id }} ">フォロワー{{user[0].follower_count}}</router-link></v-list-item-title>
+                        <v-list-item-title>{{user[0].profile}}</v-list-item-title>
                         <v-btn
-                            v-if='user.id != login_user.id && !user.follower_check'
-                            @click='follow(user.id)'
+                            v-if='user[0].id != login_user.id && !user[0].follower_check'
+                            @click='follow(user[0].id)'
                             dark
                         >フォロー</v-btn>
                         <v-btn
-                            v-if='user.id != login_user.id && user.follower_check'
-                            @click='deleteFollow(user.id)'
+                            v-if='user[0].id != login_user.id && user[0].follower_check'
+                            @click='deleteFollow(user[0].id)'
                         >フォロー解除</v-btn>
                         
                     </v-list-item-content>
@@ -45,7 +48,7 @@
                     
                     <v-container>
                         <v-row
-                            v-if='posts == null'
+                            v-if='posts[0] == null'
                         >
                             まだ投稿はありません。
                         </v-row>
@@ -259,6 +262,8 @@
             getUser(){
                 axios.get(`/users/${this.$route.params.id}`).then((response)=>{
                     this.user = response.data;
+                    // console.log('this.user情報');
+                    // console.log(this.user[0].name);
                 })
             },
             // like(id){
@@ -290,7 +295,7 @@
                 axios.get(`/users/unfollow/${id}`).then((response)=>{
                     this.getUser();
                 })
-            }
+            },
         },
         mounted() {
             this.getLoginUser();
