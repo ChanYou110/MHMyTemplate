@@ -9,10 +9,21 @@ import DetailComponent from './detail/DetailComponent';
 import ResultComponent from './result/ResultComponent';
 import EditPostComponent from './form/EditPostComponent';
 import FFlistComponent from './mypage/FFlistComponent';
+import loginFormComponent from './form/loginFormComponent';
+import HeaderComponent from './header/HeaderComponent';
 
 export default new Router({
     mode:'history',
     routes:[
+        {
+            path:'/login',
+            component:loginFormComponent,
+        },
+        {
+            path:'/',
+            component:HeaderComponent,
+            children:[
+        
         {
             path:'/',
             component:TopComponent,
@@ -55,6 +66,7 @@ export default new Router({
             name:'postDetail',
             props:true,
             component:DetailComponent,
-        }
+        },
+        ]},
     ]
 })

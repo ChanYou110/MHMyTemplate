@@ -3,14 +3,19 @@
         <v-app-bar dark app clipped-left>
             <v-toolbar-title>MonsterHunterMyTemplate</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn>ログイン</v-btn>
+            <v-btn @click='openLoginForm'>ログイン</v-btn>
+            <v-btn @click='logout'>ログアウト</v-btn>
             <template v-slot:extension>
                 <v-tabs grow>
                     <v-tab to="/">タイムライン</v-tab>
                     <v-tab to="/lank">ランキング</v-tab>
                     <v-tab to="/search">さがす</v-tab>
                     <!--<v-tab to="/act">通知</v-tab>-->
-                    <v-tab :to="{ name: 'myPage', params: { id: user.id }}">マイページ</v-tab>
+                    <v-tab 
+                        :to="{ name: 'myPage', params: { id: user.id }}"
+                    >
+                        マイページ
+                    </v-tab>
                 </v-tabs>
             </template>
         </v-app-bar>
@@ -34,6 +39,17 @@
             getLoginUser(){
                 axios.get('/user').then((response)=>{
                     this.user = response.data;
+                })
+            },
+            openLoginForm(){
+                this.$router.push({path:'/login'})
+            },
+            logout(){
+                axios({
+                    url:'/logout',
+                    method:'post',
+                }).then(response=>{
+                    this.$router.push('/login');
                 })
             }
         },
