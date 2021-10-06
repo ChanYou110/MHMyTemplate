@@ -35,9 +35,13 @@ class PostController extends Controller
     }
     function getMyPost(User $user_id, Post $post){
         // dd($user_id);
-        return $post = Post::where('user_id', $user_id->id)->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+        return $post = Post::where('user_id', $user_id->id)->orderBy('posts.created_at','desc')->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
                                 'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
                                 'user', 'skills', 'ornaments')->get();
+    }
+    
+    function delete(Post $post){
+        $post->delete();
     }
     // function update(Request $request, Post $post){
     //     dd($request);

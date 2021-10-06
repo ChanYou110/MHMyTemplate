@@ -1,5 +1,6 @@
 <template>
     <v-container>
+        {{postForm}}
         <v-row>
             <v-col cols=6>
                 <v-text-field
@@ -215,16 +216,27 @@
             </v-col>
         </v-row>
         <v-btn
-
+            
             dark
         >保存</v-btn>
+        <v-btn
+            color=red
+            @click='deletePost'
+        >この投稿を削除する</v-btn>
     </v-container>
 </template>
 
 <script>
     export default {
+        // props:{
+        //     weapon_id:{
+        //         type: integer,
+        //         default: this.posts.weapon_id,
+        //     }
+        // },
         data(){
             return {
+                posts:{},
                 weapons:[],
                 charms:[],
                 equipment:[],
@@ -293,6 +305,11 @@
             getPostDetail(){
                 axios.get(`/posts/${this.$route.params.id}`).then((response)=>{
                   this.posts = response.data;
+                })
+            },
+            deletePost(){
+                axios.post(`/posts/${this.$route.params.id}/delete`).then(()=>{
+                    this.$router.push(`/mypage/${this.posts.user_id}`);
                 })
             },
         },

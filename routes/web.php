@@ -37,6 +37,7 @@ Route::get('/my-like', 'PostController@likeIndex');
 Route::get('/users/follow/{user}', 'UserController@follow');
 Route::get('/users/unfollow/{user}', 'UserController@deleteFollow');
 Route::get('/timeline', 'PostController@timeline');
+Route::post('/posts/{post}/delete', 'PostController@delete');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {
