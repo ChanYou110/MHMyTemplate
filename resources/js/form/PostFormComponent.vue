@@ -241,10 +241,16 @@
                 number:[0,1,2,3,4,5,6,7,8,9,10],
                 ornamentForm:[{ornament_id:'',number:''}],
                 skillForm:[{skill_id:'', level:''}],
-                charmForm:{}
+                charmForm:{},
+                login_user:{}
             }
         },
         methods:{
+            getLoginUser(){
+                axios.get('/user').then((response)=>{
+                    this.login_user = response.data;
+                })
+            },
             getWeapon(){
               axios.get('/weapons').then((response)=>{
                   this.weapons = response.data;
@@ -295,7 +301,7 @@
                     charmForm:this.charmForm
                 }}).then(()=>{
                     alert('投稿されました。');
-                    // this.$router.Push('/');
+                    this.$router.push(`/mypage/${this.login_user.id}`);
                 })
             },
         },
@@ -332,6 +338,7 @@
             }
         },
         mounted() {
+            this.getLoginUser();
             this.getWeapon();
             this.getSkill();
             this.getCharm();

@@ -35,19 +35,26 @@ class PostController extends Controller
     }
     function getMyPost(User $user_id, Post $post){
         // dd($user_id);
-        return $post = Post::where('user_id', $user_id->id)->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
+        return $post = Post::where('user_id', $user_id->id)->orderBy('posts.created_at','desc')->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
                                 'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
                                 'user', 'skills', 'ornaments')->get();
     }
-    // function update(Request $request, Post $post){
-    //     dd($request);
-    //     $charm_inputs = $request['charmForm'];
-    //     $skill_inputs = $request['skillForm'];
-    //     $ornament_inputs = $request['ornamentForm'];
-    //     $post_inputs = $request['postForm'];
+    
+    function delete(Post $post){
+        $post->delete();
+    }
+    
+    function update(Request $request, Post $post){
+        $charm_inputs = $request['charmForm'];
+        $skill_inputs = $request['skillForm'];
+        $ornament_inputs = $request['ornamentForm'];
+        $post_inputs = $request['postForm'];
         
-    //     return $post->fill($charm_inputs, $skill_inputs, $ornament_inputs, $post_inputs)->save();
-    // }
+        $post->fill($charm_inputs)->save();
+        $post->fill($skill_inputs)->save();
+        $post->fill($ornament_inputs)->save();
+        $post->fill($post_inputs)->save();
+    }
     
     function search(Request $request){
         

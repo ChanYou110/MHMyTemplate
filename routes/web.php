@@ -23,7 +23,7 @@ Route::get('/ornaments', 'OrnamentController@index');
 Route::get('/post', 'PostController@index');
 Route::get('/my-post/{user_id}', 'PostController@getMyPost');
 Route::get('/posts/{post}', 'PostController@show');
-// Route::post('/posts/{post}/update', 'PostController@update');
+Route::post('/posts/{post}/update', 'PostController@update');
 Route::middleware('auth')->group(function (){
 Route::get('/user','UserController@getLoginUser');
 });
@@ -37,6 +37,7 @@ Route::get('/my-like', 'PostController@likeIndex');
 Route::get('/users/follow/{user}', 'UserController@follow');
 Route::get('/users/unfollow/{user}', 'UserController@deleteFollow');
 Route::get('/timeline', 'PostController@timeline');
+Route::post('/posts/{post}/delete', 'PostController@delete');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {
