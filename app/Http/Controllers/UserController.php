@@ -38,4 +38,12 @@ class UserController extends Controller
             $follow->delete();
         }
     }
+    function editProfile(Request $request, User $user){
+        // dd($request);
+        $input_user = $request['userForm'];
+        $user->fill($input_user)->save();
+        // if($user->profile == null){
+        //     $user->update(['profile'=>$input_user['profile']]);
+        // }
+    }
 }

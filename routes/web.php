@@ -38,6 +38,7 @@ Route::get('/users/follow/{user}', 'UserController@follow');
 Route::get('/users/unfollow/{user}', 'UserController@deleteFollow');
 Route::get('/timeline', 'PostController@timeline');
 Route::post('/posts/{post}/delete', 'PostController@delete');
+Route::post('/users/{user}/edit-profile', 'UserController@editProfile');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {

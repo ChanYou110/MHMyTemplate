@@ -34,6 +34,11 @@
                             v-if='user[0].id != login_user.id && user[0].follower_check'
                             @click='deleteFollow(user[0].id)'
                         >フォロー解除</v-btn>
+                        <v-btn
+                            v-if='user[0].id == login_user.id'
+                            @click='openEditProfile'
+                            dark
+                        >プロフィール編集</v-btn>
                         
                     </v-list-item-content>
                 </v-list-item>
@@ -296,6 +301,9 @@
                     this.getUser();
                 })
             },
+            openEditProfile(){
+                this.$router.push(`/users/${this.$route.params.id}/edit`);
+            }
         },
         mounted() {
             this.getLoginUser();
