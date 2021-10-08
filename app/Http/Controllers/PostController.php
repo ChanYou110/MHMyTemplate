@@ -43,15 +43,18 @@ class PostController extends Controller
     function delete(Post $post){
         $post->delete();
     }
-    // function update(Request $request, Post $post){
-    //     dd($request);
-    //     $charm_inputs = $request['charmForm'];
-    //     $skill_inputs = $request['skillForm'];
-    //     $ornament_inputs = $request['ornamentForm'];
-    //     $post_inputs = $request['postForm'];
+    
+    function update(Request $request, Post $post){
+        $charm_inputs = $request['charmForm'];
+        $skill_inputs = $request['skillForm'];
+        $ornament_inputs = $request['ornamentForm'];
+        $post_inputs = $request['postForm'];
         
-    //     return $post->fill($charm_inputs, $skill_inputs, $ornament_inputs, $post_inputs)->save();
-    // }
+        $post->fill($charm_inputs)->save();
+        $post->fill($skill_inputs)->save();
+        $post->fill($ornament_inputs)->save();
+        $post->fill($post_inputs)->save();
+    }
     
     function search(Request $request){
         

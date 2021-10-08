@@ -1,6 +1,5 @@
 <template>
     <v-container>
-        {{postForm}}
         <v-row>
             <v-col cols=6>
                 <v-text-field
@@ -9,83 +8,90 @@
                 ></v-text-field>
             </v-col>
         </v-row>
-        <v-row>
+                <v-row>
             <v-col cols=6>
-                <v-select
+                <v-autocomplete
                     v-model='postForm.weapon_id'
                     :items='weapons'
                     item-text='name'
                     item-value='id'
                     label='武器'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <v-select
+                <v-autocomplete
                     v-model='postForm.head_equipment_id'
                     :items='headEquipment'
                     item-text='name'
                     item-value='id'
                     label='頭防具'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <v-select
+                <v-autocomplete
                     v-model='postForm.chest_equipment_id'
                     :items='chestEquipment'
                     item-text='name'
                     item-value='id'
                     label='胸防具'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <v-select
+                <v-autocomplete
                     v-model='postForm.arm_equipment_id'
                     :items='armEquipment'
                     item-text='name'
                     item-value='id'
                     label='腕防具'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols=6>
-                <v-select
+                <v-autocomplete
                     v-model='postForm.waist_equipment_id'
                     :items='waistEquipment'
                     item-text='name'
                     item-value='id'
                     label='腰防具'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
             <v-col cols=6>
-                <v-select
+                <v-autocomplete
                     v-model='postForm.leg_equipment_id'
                     :items='legEquipment'
                     item-text='name'
                     item-value='id'
                     label='脚防具'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
         </v-row>
         護石
         <v-row>
             <v-col cols=3>
-                <v-select
+                <v-autocomplete
                     v-model='charmForm.skill1_id'
                     :items='skills'
                     item-text='name'
                     item-value='id'
                     label='スキル名'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
             <v-col cols=1>
                 <v-select
@@ -96,14 +102,15 @@
                 ></v-select>
             </v-col>
             <v-col cols=3>
-                <v-select
+                <v-autocomplete
                     v-model='charmForm.skill2_id'
                     :items='skills'
                     item-text='name'
                     item-value='id'
                     label='スキル名'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
             </v-col>
             <v-col cols=1>
                 <v-select
@@ -119,11 +126,10 @@
                 cols=4
                 style="display:inline-flex"
             >
-                スロット1
                 <v-select
                     v-model='charmForm.slot1'
                     :items='number'
-                    label='個数'
+                    label='スロット1の個数'
                     dense
                 ></v-select>
             </v-col>
@@ -131,11 +137,10 @@
                 cols=4
                 style="display:inline-flex"
             >
-                スロット2
                 <v-select
                     v-model='charmForm.slot2'
                     :items='number'
-                    label='個数'
+                    label='スロット2の個数'
                     dense
                 ></v-select>
             </v-col>
@@ -143,11 +148,10 @@
                 cols=4
                 style="display:inline-flex"
             >
-                スロット3
                 <v-select
                     v-model='charmForm.slot3'
                     :items='number'
-                    label='個数'
+                    label='スロット3の個数'
                     dense
                 ></v-select>
             </v-col>
@@ -163,14 +167,15 @@
                 :key='index'
                 style="display:inline-flex"
             >
-                <v-select
+                <v-autocomplete
                     v-model='ornamentForm[index].ornament_id'
                     :items='ornaments'
                     item-text='name'
                     item-value='id'
                     label='装飾品名'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
                 <v-select
                     v-model='ornamentForm[index].number'
                     :items='number'
@@ -190,14 +195,15 @@
                 :key='index'
                 style="display:inline-flex"
             >
-                <v-select
+                <v-autocomplete
                     v-model='skillForm[index].skill_id'
                     :items='skills'
                     item-text='name'
                     item-value='id'
                     label='スキル名'
                     dense
-                ></v-select>
+                >
+                </v-autocomplete>
                 <v-select
                     v-model='skillForm[index].level'
                     :items='number'
@@ -216,7 +222,6 @@
             </v-col>
         </v-row>
         <v-btn
-            
             dark
         >保存</v-btn>
         <v-btn
@@ -230,8 +235,8 @@
     export default {
         // props:{
         //     weapon_id:{
-        //         type: integer,
-        //         default: this.posts.weapon_id,
+        //         type: Number,
+        //         default: 
         //     }
         // },
         data(){
@@ -289,19 +294,20 @@
                 }
                 this.ornamentForm.push(baseOrnamentForm);
             },
-            // sendPostForm(){
-            //     axios({
-            //         url:`/posts/${this.$route.params.id}/update`,
-            //         method:'update',
-            //         data:{
-            //             postForm:this.postForm,
-            //             ornamentForm:this.ornamentForm,
-            //             skillForm:this.skillForm,
-            //             charmForm:this.charmForm
-            //         }}).then(()=>{
-            //         alert('変更を保存しました。');
-            //     })
-            // },
+            sendPostForm(){
+                axios({
+                    url:`/posts/${this.$route.params.id}/update`,
+                    method:'post',
+                    data:{
+                        postForm:this.postForm,
+                        ornamentForm:this.ornamentForm,
+                        skillForm:this.skillForm,
+                        charmForm:this.charmForm
+                    }}).then(()=>{
+                    alert('変更を保存しました。');
+                    // this.$router.push(`/detail/${this.$route.params.id}`);
+                })
+            },
             getPostDetail(){
                 axios.get(`/posts/${this.$route.params.id}`).then((response)=>{
                   this.posts = response.data;
@@ -312,6 +318,9 @@
                     this.$router.push(`/mypage/${this.posts.user_id}`);
                 })
             },
+            defaultPostForm(){
+                this.postForm.weapon_id = this.posts.weapon_id;
+            }
         },
         computed:{
             headEquipment(){
@@ -345,12 +354,19 @@
                 return this.equipment.filter(value=>value.part_id==5);
             },
         },
+        // created() {
+        //     axios.get(`/posts/${this.$route.params.id}`).then((response)=>{
+        //           posts = response.data;
+        //           this.postForm.weapon_id = posts.weapon_id;
+        //     })
+        // },
         mounted() {
             this.getWeapon();
             this.getSkill();
             this.getCharm();
             this.getEquipment();
             this.getOrnament();
+            // this.defaultPostForm();
             this.getPostDetail();
         }
     }
