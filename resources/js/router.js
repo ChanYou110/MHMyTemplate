@@ -7,7 +7,7 @@ import MyPageComponent from './mypage/MyPageComponent';
 import PostFormComponent from './form/PostFormComponent';
 import DetailComponent from './detail/DetailComponent';
 import ResultComponent from './result/ResultComponent';
-import EditPostComponent from './form/EditPostComponent';
+// import EditPostComponent from './form/EditPostComponent';
 import FFlistComponent from './mypage/FFlistComponent';
 import loginFormComponent from './form/loginFormComponent';
 import HeaderComponent from './header/HeaderComponent';
@@ -57,11 +57,11 @@ export default new Router({
             path:'/create',
             component:PostFormComponent,
         },
-        {
-            path:'/edit/:id',
-            name:'postEdit',
-            component:EditPostComponent,
-        },
+        // {
+        //     path:'/edit/:id',
+        //     name:'postEdit',
+        //     component:EditPostComponent,
+        // },
         {
             path:'/detail/:id',
             name:'postDetail',
