@@ -16,7 +16,7 @@ class ModifyOrnamentPostTable extends Migration
         Schema::disableForeignKeyConstraints();
         
         Schema::table('ornament_post', function (Blueprint $table) {
-            $table->bigInteger('post_id')->onDelete('cascade')->change();
+            $table->bigInteger('post_id')->unsigned()->change();
         });
         
         Schema::enableForeignKeyConstraints();

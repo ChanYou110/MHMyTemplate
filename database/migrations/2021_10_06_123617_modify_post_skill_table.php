@@ -16,7 +16,7 @@ class ModifyPostSkillTable extends Migration
         Schema::disableForeignKeyConstraints();
         
         Schema::table('post_skill', function (Blueprint $table) {
-            $table->bigInteger('post_id')->onDelete('cascade')->change();
+            $table->bigInteger('post_id')->unsigned()->change();
         });
         
         Schema::enableForeignKeyConstraints();
