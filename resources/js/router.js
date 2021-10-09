@@ -11,6 +11,7 @@ import EditPostComponent from './form/EditPostComponent';
 import FFlistComponent from './mypage/FFlistComponent';
 import loginFormComponent from './form/loginFormComponent';
 import HeaderComponent from './header/HeaderComponent';
+import EditProfileComponent from './form/EditProfileComponent';
 
 export default new Router({
     mode:'history',
@@ -66,6 +67,11 @@ export default new Router({
             name:'postDetail',
             props:true,
             component:DetailComponent,
+        },
+        {
+            path:'users/:id/edit',
+            name:'userEdit',
+            component:EditProfileComponent,
         },
         ]},
     ]
