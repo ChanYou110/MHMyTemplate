@@ -12,6 +12,11 @@
                     <v-card-title>
                         プロフィール編集
                     </v-card-title>
+                    <!--<input-->
+                    <!--    type='file'-->
+                    <!--    accept='image/jpeg, image/png'-->
+                    <!--    @change='onChangeImage'-->
+                    <!-- />-->
                     <v-text-field
                         type='name'
                         name='name'
