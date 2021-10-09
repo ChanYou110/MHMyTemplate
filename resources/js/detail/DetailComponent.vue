@@ -96,7 +96,10 @@
             <div>装備説明</div>
             <div>{{posts.body}}</div>
             <div v-if='posts.user.id == user.id'>
-                <v-btn @click='editPost'>編集</v-btn>
+                <v-btn
+                    color=red
+                    @click='deletePost'
+                >この投稿を削除する</v-btn>
             </div>
         </v-container>
     </v-app>
@@ -121,9 +124,9 @@
                     this.user = response.data;
                 })
             },
-            editPost(){
-                this.$router.push({path:`/edit/${this.$route.params.id}`})
-            },
+            // editPost(){
+            //     this.$router.push({path:`/edit/${this.$route.params.id}`})
+            // },
             like(id){
                 axios.get(`/posts/like/${id}`).then((response)=>{
                     this.getPostDetail();
@@ -132,6 +135,11 @@
             deleteLike(id){
                 axios.get(`/posts/unlike/${id}`).then((response)=>{
                     this.getPostDetail();
+                })
+            },
+            deletePost(){
+                axios.post(`/posts/${this.$route.params.id}/delete`).then(()=>{
+                    this.$router.push(`/mypage/${this.posts.user_id}`);
                 })
             },
         },

@@ -23,7 +23,7 @@ Route::get('/ornaments', 'OrnamentController@index');
 Route::get('/post', 'PostController@index');
 Route::get('/my-post/{user_id}', 'PostController@getMyPost');
 Route::get('/posts/{post}', 'PostController@show');
-Route::post('/posts/{post}/update', 'PostController@update');
+// Route::post('/posts/{post}/update', 'PostController@update');
 Route::middleware('auth')->group(function (){
 Route::get('/user','UserController@getLoginUser');
 });
