@@ -13,32 +13,34 @@
 
 Auth::routes();
 
-
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix("posts")->group(function () {
+    Route::get('{post}', 'PostController@show');
+    Route::get('like/{post}', 'PostController@like');
+    Route::get('unlike/{post}', 'PostController@deleteLike');
+    Route::get('my-post/{user_id}', 'PostController@getMyPost');
+    Route::post('', 'PostController@store');
+    Route::post('{post}/delete', 'PostController@delete');
+    // Route::post('{post}/update', 'PostController@update');
+});
+Route::prefix("users")->group(function () {
+    Route::get('{user}','UserController@getUser');
+    Route::get('follow/{user}', 'UserController@follow');
+    Route::get('unfollow/{user}', 'UserController@deleteFollow');
+    Route::post('{user}/edit-profile', 'UserController@editProfile');
+    // Route::post('{user}/edit-profile', 'UserController@editProfile');
+});
+Route::middleware('auth')->group(function (){
+    Route::get('/user','UserController@getLoginUser');
+});
 Route::get('/weapons', 'WeaponController@index');
 Route::get('/charms', 'CharmController@index');
 Route::get('/skills', 'SkillController@index');
 Route::get('/equipment', 'EquipmentController@index');
 Route::get('/ornaments', 'OrnamentController@index');
-Route::get('/post', 'PostController@index');
-Route::get('/my-post/{user_id}', 'PostController@getMyPost');
-Route::get('/posts/{post}', 'PostController@show');
-// Route::post('/posts/{post}/update', 'PostController@update');
-Route::middleware('auth')->group(function (){
-Route::get('/user','UserController@getLoginUser');
-});
-Route::get('/users/{user}','UserController@getUser');
-Route::post('/posts', 'PostController@store');
-Route::get('/result', 'PostController@search');
-Route::get('/posts/like/{post}', 'PostController@like');
-Route::get('/posts/unlike/{post}', 'PostController@deleteLike');
+Route::get('/results', 'PostController@search');
 Route::get('/lanking', 'PostController@lanking');
 Route::get('/my-like', 'PostController@likeIndex');
-Route::get('/users/follow/{user}', 'UserController@follow');
-Route::get('/users/unfollow/{user}', 'UserController@deleteFollow');
 Route::get('/timeline', 'PostController@timeline');
-Route::post('/posts/{post}/delete', 'PostController@delete');
-Route::post('/users/{user}/edit-profile', 'UserController@editProfile');
 
 //ルーティング定義のないパスは全てtopを表示するようにする
 Route::get('/{any}', function() {

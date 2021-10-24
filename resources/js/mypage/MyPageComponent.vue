@@ -260,7 +260,7 @@
         },
         methods:{
             getMyPost(){
-                axios.get(`/my-post/${this.$route.params.id}`).then((response)=>{
+                axios.get(`/posts/my-post/${this.$route.params.id}`).then((response)=>{
                     this.posts = response.data;
               })
             },
