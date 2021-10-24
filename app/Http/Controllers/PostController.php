@@ -118,47 +118,23 @@ class PostController extends Controller
     }
     
     function like(Post $post){
-        if(!$post->getLikeCheckAttribute()){
-            $like = Like::create([
-                                'post_id'=>$post->id,
-                                'user_id'=>Auth::id()
-                                ]);
-        }
+        $like = $post->like($post);
     }
     function deleteLike(Post $post){
-        if($post->getLikeCheckAttribute()){
-            $like = Like::where('post_id', $post->id)->where('user_id', Auth::id())->first();
-            $like->delete();
-        }
+        $deleteLike = $post->deleteLike($post);
     }
     
     function lanking(Post $post){
-        return $post = Post::withCount('likes')
-                            ->orderBy('likes_count', 'desc')
-                            ->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
-                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
-                                'user', 'skills', 'ornaments', 'likes')
-                            ->get();
+        $lanking = $post->lanking($post);
+        return $lanking;
     }
     
     function likeIndex(Post $post){
-        return $post = Post::select('posts.*')
-                            ->join('likes', 'likes.post_id', '=', 'posts.id')
-                            ->where('likes.user_id', Auth::id())
-                            ->orderBy('likes.created_at', 'desc')
-                            ->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
-                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
-                                'user', 'skills', 'ornaments', 'likes')
-                            ->get();
+        $likeIndex = $post->likeIndex($post);
+        return $likeIndex;
     }
     function timeline(Post $post){
-        return $post = Post::select('posts.*')
-                            ->join('follows', 'follows.follower_user_id', '=', 'posts.user_id')
-                            ->where('follows.follow_user_id', Auth::id())
-                            ->orderBy('posts.created_at', 'desc')
-                            ->with('weapon', 'head_equipment', 'chest_equipment', 'arm_equipment',
-                                'waist_equipment', 'leg_equipment', 'charm.skill1', 'charm.skill2',
-                                'user', 'skills', 'ornaments', 'likes')
-                            ->get();
+        $timeline = $post->timeline($post);
+        return $timeline;
     }
 }

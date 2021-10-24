@@ -237,7 +237,7 @@
             },
             openResult(){
                 // this.$router.push({path:'/result'})
-                axios.get('/result', {params:this.searchForm}).then((response)=>{
+                axios.get('results', {params:this.searchForm}).then((response)=>{
                     this.results = response.data;
                 })
             }
