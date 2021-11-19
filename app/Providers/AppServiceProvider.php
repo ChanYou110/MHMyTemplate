@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         //https接続にする。
         \URL::forceScheme('https');
          $this->app['request']->server->set('HTTPS','on');
+         Schema::defaultStringLength(191);
     }
 }
