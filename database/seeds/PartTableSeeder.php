@@ -12,12 +12,34 @@ class PartTableSeeder extends Seeder
      */
     public function run()
     {
-        $parts = ['頭','胴','腕','腰','脚'];
-        foreach($parts as $part)
-        {
-            Part::create([
-                'name'=>$part
-            ]);
-        }
+        // $parts = ['頭','胴','腕','腰','脚'];
+        // foreach($parts as $part)
+        // {
+        //     Part::create([
+        //         'name'=>$part
+        //     ]);
+        // }
+        DB::table('weapon_types')->insert([
+            [
+                'id'=>'1',
+                'name'=>'頭'
+            ],
+            [
+                'id'=>'2',
+                'name'=>'胴'
+            ],
+            [
+                'id'=>'3',
+                'name'=>'腕'
+            ],
+            [
+                'id'=>'4',
+                'name'=>'腰'
+            ],
+            [
+                'id'=>'5',
+                'name'=>'脚'
+            ],
+        ]);
     }
 }
