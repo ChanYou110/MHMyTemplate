@@ -13211,20 +13211,20 @@ class WeaponTableSeeder extends Seeder
                 'slot3'=>'0'
             ],
             
-            [
-                'name'=>'',
-                'weapon_types_id'=>'',
-                'slot1'=>'',
-                'slot2'=>'',
-                'slot3'=>''
-            ],
-            [
-                'name'=>'',
-                'weapon_types_id'=>'',
-                'slot1'=>'',
-                'slot2'=>'',
-                'slot3'=>''
-            ],
+            // [
+            //     'name'=>'',
+            //     'weapon_types_id'=>'',
+            //     'slot1'=>'',
+            //     'slot2'=>'',
+            //     'slot3'=>''
+            // ],
+            // [
+            //     'name'=>'',
+            //     'weapon_types_id'=>'',
+            //     'slot1'=>'',
+            //     'slot2'=>'',
+            //     'slot3'=>''
+            // ],
         ]);
     }
 }
