@@ -19,7 +19,7 @@ class PartTableSeeder extends Seeder
         //         'name'=>$part
         //     ]);
         // }
-        DB::table('weapon_types')->insert([
+        DB::table('parts')->insert([
             [
                 'id'=>'1',
                 'name'=>'頭'
